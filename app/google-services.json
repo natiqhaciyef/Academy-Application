@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "543253127117",
+    "project_id": "millisoft-roomtracker-db054",
+    "storage_bucket": "millisoft-roomtracker-db054.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543253127117:android:4b587bae775145675dae84",
+        "android_client_info": {
+          "package_name": "com.natiqhaciyef.millisoft_room_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543253127117-gemr1ou8m873dgsd17giq4s5a34imlr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.natiqhaciyef.millisoft_room_tracker",
+            "certificate_hash": "b101e841c7156cc30e140cfce0d5c52f6073267e"
+          }
+        },
+        {
+          "client_id": "543253127117-vmthslhe9kctnmn9f9cdmt72hpd856ef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN4b4Pt126xpCNveMqAwVsZEIeGhblLSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543253127117-vmthslhe9kctnmn9f9cdmt72hpd856ef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
