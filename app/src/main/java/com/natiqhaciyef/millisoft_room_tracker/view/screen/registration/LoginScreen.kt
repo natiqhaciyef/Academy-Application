@@ -35,6 +35,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.natiqhaciyef.millisoft_room_tracker.AppTheme
 import com.natiqhaciyef.millisoft_room_tracker.data.util.FontList
 import com.natiqhaciyef.millisoft_room_tracker.ui.theme.PurpleExtraDark
 import com.natiqhaciyef.millisoft_room_tracker.ui.theme.Yellow
@@ -52,10 +53,8 @@ fun LoginScreen(
     auth = Firebase.auth
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
+    println(2)
 
-    auth.currentUser?.let {
-        navController.navigate(ScreenID.HomeScreen.name)
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -203,8 +202,9 @@ fun LoginMainPart(
                         email = email.value,
                         password = password.value,
                         context = context,
-                        navController = navController
-                    )
+                    ){
+                        navController.navigate(ScreenID.HomeScreen.name)
+                    }
                 },
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -291,16 +291,17 @@ fun LoginTopScreen() {
 }
 
 
+
 fun signInUser(
     email: String,
     password: String,
     context: Context,
-    navController: NavController
+    content: () -> Unit
 ) {
     auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-        navController.navigate(ScreenID.HomeScreen.name)
+        content()
     }.addOnFailureListener {
         // error message for user
-        Toast.makeText(context, "Something went wrong. Try it again", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Something went wrong. Try it again", Toast.LENGTH_LONG).show()
     }
 }

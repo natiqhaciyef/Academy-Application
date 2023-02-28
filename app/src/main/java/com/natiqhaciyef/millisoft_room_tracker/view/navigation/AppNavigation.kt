@@ -1,28 +1,31 @@
 package com.natiqhaciyef.millisoft_room_tracker.view.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.natiqhaciyef.millisoft_room_tracker.view.screen.home.HomeScreen
+import com.natiqhaciyef.millisoft_room_tracker.view.screen.home.MainScreens
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.ForgotPasswordScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.LoginScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.RegisterScreen
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(auth: FirebaseAuth = Firebase.auth) {
     val navController = rememberNavController()
-    val auth = Firebase.auth
     NavHost(
-        navController = navController, startDestination =
-        if (auth.currentUser != null) ScreenID.HomeScreen.name
-        else ScreenID.RegisterScreen.name
+        navController = navController, startDestination = ScreenID.RegisterScreen.name
     ) {
+
         composable(ScreenID.RegisterScreen.name) {
-            RegisterScreen(navController)
+            if (auth.currentUser != null)
+                navController.navigate(ScreenID.HomeScreen.name)
+            else
+                RegisterScreen(navController)
         }
 
         composable(ScreenID.LoginScreen.name) {
@@ -34,20 +37,9 @@ fun AppNavigation() {
         }
 
         composable(ScreenID.HomeScreen.name) {
-            HomeScreen()
+            MainScreens()
         }
-
-        composable(ScreenID.RoomTrackingScreen.name) {
-
-        }
-
-        composable(ScreenID.CoursesScreen.name) {
-
-        }
-
-        composable(ScreenID.UserProfileScreen.name) {
-
-        }
+    }
 
 //        composable(
 //            route = "${ScreenID.HomeScreen.name}/{id}/{name}",
@@ -69,5 +61,4 @@ fun AppNavigation() {
 //            }
 //        }
 
-    }
 }

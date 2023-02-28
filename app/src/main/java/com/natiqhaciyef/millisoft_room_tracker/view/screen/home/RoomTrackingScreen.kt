@@ -4,7 +4,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun HomeScreen(){
-    Text(text = "Home screen")
-    println("Home screen")
+fun RoomTrackingScreen(){
+    Text(text = "Room tracking screen")
 }
