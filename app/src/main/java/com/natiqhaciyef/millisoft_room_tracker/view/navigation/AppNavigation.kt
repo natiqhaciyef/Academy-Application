@@ -5,41 +5,47 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.home.HomeScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.ForgotPasswordScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.LoginScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.RegisterScreen
 
 @Composable
-fun AppNavigation(){
+fun AppNavigation() {
     val navController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = ScreenID.RegisterScreen.name){
-        composable(ScreenID.RegisterScreen.name){
+    val auth = Firebase.auth
+    NavHost(
+        navController = navController, startDestination =
+        if (auth.currentUser != null) ScreenID.HomeScreen.name
+        else ScreenID.RegisterScreen.name
+    ) {
+        composable(ScreenID.RegisterScreen.name) {
             RegisterScreen(navController)
         }
 
-        composable(ScreenID.LoginScreen.name){
+        composable(ScreenID.LoginScreen.name) {
             LoginScreen(navController)
         }
 
-        composable(ScreenID.ForgotPasswordScreen.name){
+        composable(ScreenID.ForgotPasswordScreen.name) {
             ForgotPasswordScreen()
         }
 
-        composable(ScreenID.HomeScreen.name){
+        composable(ScreenID.HomeScreen.name) {
             HomeScreen()
         }
 
-        composable(ScreenID.RoomTrackingScreen.name){
+        composable(ScreenID.RoomTrackingScreen.name) {
 
         }
 
-        composable(ScreenID.CoursesScreen.name){
+        composable(ScreenID.CoursesScreen.name) {
 
         }
 
-        composable(ScreenID.UserProfileScreen.name){
+        composable(ScreenID.UserProfileScreen.name) {
 
         }
 
