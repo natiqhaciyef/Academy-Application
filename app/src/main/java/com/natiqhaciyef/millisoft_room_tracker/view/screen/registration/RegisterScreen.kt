@@ -57,6 +57,7 @@ fun RegisterScreen(
     val password = remember { mutableStateOf("") }
 
     val context = LocalContext.current
+    println(1)
 
     Column(
         modifier = Modifier
