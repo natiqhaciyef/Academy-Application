@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:543253127117:android:4b587bae775145675dae84",
+        "mobilesdk_app_id": "1:543253127117:android:19d962b82cce3a475dae84",
         "android_client_info": {
           "package_name": "com.natiqhaciyef.millisoft_room_tracker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "543253127117-gemr1ou8m873dgsd17giq4s5a34imlr5.apps.googleusercontent.com",
+          "client_id": "543253127117-tsgbs1k29cq91fr9vnvosl2bdmca3rps.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.natiqhaciyef.millisoft_room_tracker",
-            "certificate_hash": "b101e841c7156cc30e140cfce0d5c52f6073267e"
+            "certificate_hash": "cc494355269d80d7664669f5f0fd1127bbdb88ce"
           }
         },
         {
