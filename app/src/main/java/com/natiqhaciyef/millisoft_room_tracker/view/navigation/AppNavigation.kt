@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.natiqhaciyef.millisoft_room_tracker.view.screen.home.DetailsScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.home.MainScreens
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.ForgotPasswordScreen
 import com.natiqhaciyef.millisoft_room_tracker.view.screen.registration.LoginScreen
@@ -37,7 +38,11 @@ fun AppNavigation(auth: FirebaseAuth = Firebase.auth) {
         }
 
         composable(ScreenID.HomeScreen.name) {
-            MainScreens()
+            MainScreens(navController)
+        }
+
+        composable(ScreenID.DetailsScreen.name){
+            DetailsScreen()
         }
     }
 
