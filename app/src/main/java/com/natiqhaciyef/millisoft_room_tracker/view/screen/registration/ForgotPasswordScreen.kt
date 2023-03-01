@@ -196,7 +196,7 @@ fun ForgotPasswordTopScreen() {
 
 fun resetPassword(email: String, context: Context) {
     auth.sendPasswordResetEmail(email).addOnSuccessListener {
-//        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Please go to register screen and re-enter your password", Toast.LENGTH_SHORT).show()
     }.addOnFailureListener {
         // error message for user
         Toast.makeText(context, "Something went wrong. Try it again", Toast.LENGTH_SHORT).show()
