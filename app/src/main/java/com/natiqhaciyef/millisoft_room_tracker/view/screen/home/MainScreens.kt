@@ -30,6 +30,8 @@ fun MainScreens(
     ) {
         it.calculateBottomPadding()
 
+//        HomeScreen(navController = navController)
+
         when(selectedIndex.value){
             0 -> { HomeScreen(navController) }
             1 -> { RoomTrackingScreen() }

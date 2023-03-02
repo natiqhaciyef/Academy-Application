@@ -1,10 +1,14 @@
 package com.natiqhaciyef.millisoft_room_tracker.view.screen.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import com.natiqhaciyef.millisoft_room_tracker.ui.theme.*
 import androidx.compose.runtime.Composable
@@ -21,63 +25,122 @@ import com.natiqhaciyef.millisoft_room_tracker.view.navigation.ScreenID
 fun HomeScreen(
     navController: NavController
 ) {
-
+    HomeTopView {
+        HomeBodyView()
+    }
 }
 
 @Preview
 @Composable
-fun HomeTopView() {
+fun HomeTopView(content: @Composable () -> Unit = { }) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(PurpleExtraDark)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.4f)
-                .background(PurpleExtraDark)
-        ) {
-
-        }
-
-        Card(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentColor = White,
-            shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
-        ) {
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .size(190.dp)
-                            .padding(start = 20.dp, end = 20.dp, top = 40.dp),
-                        backgroundColor = Color.Gray
-                    ) {
-
-                    }
-
-                    Card(
-                        modifier = Modifier
-                            .size(190.dp)
-                            .padding(start = 20.dp, end = 20.dp, top = 40.dp),
-                        backgroundColor = Color.Gray
-                    ) {
-
-                    }
-                }
-            }
-        }
+        content()
     }
 }
 
+@Composable
+fun HomeBodyView() {
+    Spacer(modifier = Modifier.height(280.dp))
+    Card(
+        modifier = Modifier
+            .fillMaxWidth(),
+        contentColor = White,
+        shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
+    ) {
 
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Spacer(modifier = Modifier.height(40.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(
+                    modifier = Modifier
+                        .size(160.dp),
+                    backgroundColor = Color.Gray,
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+
+                }
+
+                Spacer(modifier = Modifier.width(20.dp))
+
+                Card(
+                    modifier = Modifier
+                        .size(160.dp),
+                    backgroundColor = Color.Gray,
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(
+                    modifier = Modifier
+                        .size(160.dp),
+                    backgroundColor = Color.Gray,
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+
+                }
+
+                Spacer(modifier = Modifier.width(20.dp))
+
+                Card(
+                    modifier = Modifier
+                        .size(160.dp),
+                    backgroundColor = Color.Gray,
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(
+                    modifier = Modifier
+                        .size(160.dp),
+                    backgroundColor = Color.Gray,
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+
+                }
+
+                Spacer(modifier = Modifier.width(20.dp))
+
+                Card(
+                    modifier = Modifier
+                        .size(160.dp),
+                    backgroundColor = Color.Gray,
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+
+                }
+            }
+
+            Spacer(modifier = Modifier.height(75.dp))
+        }
+    }
+}

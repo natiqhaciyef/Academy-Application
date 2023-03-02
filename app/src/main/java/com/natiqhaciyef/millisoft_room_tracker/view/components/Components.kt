@@ -62,8 +62,8 @@ fun NavBar(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(55.dp)
-            .background(Color.Transparent, RoundedCornerShape(8.dp))
+            .height(60.dp)
+            .background(Color.White, RoundedCornerShape(8.dp))
     ) {
 
         Row(
@@ -93,7 +93,7 @@ fun NavBar(
                                     else Color.Transparent,
                                     shape = CircleShape
                                 )
-                                .size(35.dp),
+                                .size(45.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
@@ -106,8 +106,7 @@ fun NavBar(
                         AnimatedVisibility(visible = (selectedIndex.value == index)) {
                             Text(
                                 text = icon.title,
-                                modifier = Modifier
-                                    .padding(top = 4.dp),
+                                modifier = Modifier,
                                 color = Color.Black,
                                 fontSize = 12.sp
                             )
