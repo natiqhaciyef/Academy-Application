@@ -1,6 +1,7 @@
 package com.natiqhaciyef.millisoft_room_tracker.view.navigation
 
 enum class ScreenID {
+    SplashScreen,
     RegisterScreen,
     LoginScreen,
     ForgotPasswordScreen,
