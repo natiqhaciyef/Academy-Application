@@ -113,5 +113,6 @@ dependencies {
 
 
     //Animation Library
-    implementation "com.airbnb.android:lottie-compose:5.2.0"
+    implementation "com.airbnb.android:lottie-compose:5.2.0"    // lottie animation
+    implementation "com.google.accompanist:accompanist-pager:0.22.0-rc"     // viewpager
 }
