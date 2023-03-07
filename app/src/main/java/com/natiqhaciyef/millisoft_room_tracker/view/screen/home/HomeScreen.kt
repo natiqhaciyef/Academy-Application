@@ -11,6 +11,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import com.natiqhaciyef.millisoft_room_tracker.ui.theme.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,9 +31,10 @@ import com.natiqhaciyef.millisoft_room_tracker.view.navigation.ScreenID
 fun HomeScreen(
     navController: NavController
 ) {
+    val selectedInstructor = remember{ mutableStateOf(0) }
     HomeTopView {
         HomeBodyView()
-        HomeBottomView()
+        HomeBottomView(selectedInstructor)
     }
 }
 
@@ -163,7 +167,6 @@ fun HomeBodyView() {
                             color = White
                         )
                     }
-
                 }
 
                 Spacer(modifier = Modifier.width(20.dp))
@@ -174,36 +177,29 @@ fun HomeBodyView() {
                     backgroundColor = Color.Gray,
                     shape = RoundedCornerShape(15.dp)
                 ) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.c_sharp_development),
+                            contentDescription = "C# Development",
+                            modifier = Modifier
+                                .padding(start = 35.dp, end = 35.dp)
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
 
+                        Text(
+                            text = "C# Development",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = White
+                        )
+                    }
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Card(
-                    modifier = Modifier
-                        .size(160.dp),
-                    backgroundColor = Color.Gray,
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-
-                }
-
-                Spacer(modifier = Modifier.width(20.dp))
-
-                Card(
-                    modifier = Modifier
-                        .size(160.dp),
-                    backgroundColor = Color.Gray,
-                    shape = RoundedCornerShape(15.dp)
-                ) {
-
-                }
-            }
             Spacer(modifier = Modifier.height(30.dp))
         }
     }
@@ -211,9 +207,9 @@ fun HomeBodyView() {
 
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview
+//@Preview
 @Composable
-fun HomeBottomView() {
+fun HomeBottomView(selectedInstructor: MutableState<Int>) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -229,8 +225,10 @@ fun HomeBottomView() {
         )
         Spacer(modifier = Modifier.height(22.dp))
 
-        HorizontalPager(pageCount = 3) {
-
+        HorizontalPager(pageCount = 3) { page ->
+            when(page){
+                0 -> { selectedInstructor.value}
+            }
         }
         Spacer(modifier = Modifier.height(75.dp))
     }
