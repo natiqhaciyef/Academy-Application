@@ -22,10 +22,6 @@ fun AppNavigation(auth: FirebaseAuth = Firebase.auth) {
         navController = navController, startDestination = ScreenID.RegisterScreen.name
     ) {
 
-        composable(ScreenID.SplashScreen.name){
-            navController.navigate(ScreenID.RegisterScreen.name)
-        }
-
         composable(ScreenID.RegisterScreen.name) {
             if (auth.currentUser != null)
                 navController.navigate(ScreenID.HomeScreen.name)
