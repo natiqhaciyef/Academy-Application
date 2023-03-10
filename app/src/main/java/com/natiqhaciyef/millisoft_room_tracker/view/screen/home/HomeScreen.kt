@@ -31,7 +31,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.util.lerp
 import com.airbnb.lottie.utils.MiscUtils.lerp
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
+import com.natiqhaciyef.millisoft_room_tracker.data.model.UserModel
 import com.natiqhaciyef.millisoft_room_tracker.data.util.InstructorList
+import com.natiqhaciyef.millisoft_room_tracker.view.components.CustomViewPager
 import kotlin.math.absoluteValue
 
 
@@ -40,7 +42,8 @@ import kotlin.math.absoluteValue
 fun HomeScreen(
     navController: NavController
 ) {
-    HomeTopView {
+    HomeView {
+        HomeTopView()
         HomeBodyView()
         HomeBottomView()
     }
@@ -48,7 +51,7 @@ fun HomeScreen(
 
 @Preview
 @Composable
-fun HomeTopView(content: @Composable () -> Unit = { }) {
+fun HomeView(content: @Composable () -> Unit = { }) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,6 +61,21 @@ fun HomeTopView(content: @Composable () -> Unit = { }) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         content()
+    }
+}
+
+@Preview
+@Composable
+fun HomeTopView(user: UserModel =
+                    UserModel(0,"Natiq","name.haciyef@gmail.com")
+){
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Spacer(modifier = Modifier.height(40.dp))
+
     }
 }
 
@@ -246,99 +264,5 @@ fun HomeBottomView() {
         CustomViewPager()
 
         Spacer(modifier = Modifier.height(85.dp))
-    }
-}
-
-
-@Preview
-@ExperimentalPagerApi
-@Composable
-fun CustomViewPager() {
-    val pagerState = rememberPagerState(
-        initialPage = 0,
-        pageCount = InstructorList.instructors.size
-    )
-
-    LaunchedEffect(key1 = Unit) {
-        while (true) {
-            yield()
-            delay(2000)
-            pagerState.animateScrollToPage(
-                page = (pagerState.currentPage + 1) % (pagerState.pageCount),
-                animationSpec = tween(600)
-            )
-        }
-    }
-
-    HorizontalPager(
-        state = pagerState,
-        modifier = Modifier
-            .padding(horizontal = 40.dp)
-    ) { page ->
-
-        Card(
-            modifier = Modifier
-                .graphicsLayer {
-                    val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
-                    lerp(
-                        start = 0.85f,
-                        stop = 1f,
-                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                    ).also { scale ->
-                        scaleX = scale
-                        scaleY = scale
-                    }
-                    alpha = lerp(
-                        start = 0.5f,
-                        stop = 1f,
-                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                    )
-                }
-                .fillMaxWidth()
-                .height(295.dp)
-                .padding(horizontal = 40.dp),
-            shape = RoundedCornerShape(15.dp)
-        ) {
-            val item = InstructorList.instructors[page]
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .align(Alignment.Center)
-                    .background(color = PurpleExtraDark)
-            ) {
-                Column(
-                    modifier = Modifier,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Image(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(230.dp),
-                        contentScale = ContentScale.Crop,
-                        painter = painterResource(id = item.image),
-                        contentDescription = "Instructor",
-                    )
-
-                    Spacer(modifier = Modifier.height(5.dp))
-
-                    Text(
-                        text = item.name,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.White
-                    )
-
-                    Spacer(modifier = Modifier.height(5.dp))
-
-                    Text(
-                        text = item.field,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.White
-                    )
-                }
-            }
-        }
     }
 }
