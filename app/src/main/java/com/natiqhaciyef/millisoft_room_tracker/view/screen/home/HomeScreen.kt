@@ -25,6 +25,7 @@ import kotlinx.coroutines.yield
 import androidx.compose.foundation.pager.rememberPagerState
 import com.google.accompanist.pager.HorizontalPager
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.util.lerp
@@ -224,15 +225,9 @@ fun HomeBodyView() {
 }
 
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalPagerApi::class)
-//@Preview
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeBottomView() {
-    val selectedInstructor = remember { mutableStateOf(0) }
-
-    val pageState = rememberPagerState(
-        initialPage = 2
-    )
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -255,7 +250,7 @@ fun HomeBottomView() {
 }
 
 
-@OptIn(ExperimentalFoundationApi::class)
+@Preview
 @ExperimentalPagerApi
 @Composable
 fun CustomViewPager() {
@@ -300,7 +295,7 @@ fun CustomViewPager() {
                     )
                 }
                 .fillMaxWidth()
-                .height(250.dp)
+                .height(295.dp)
                 .padding(horizontal = 40.dp),
             shape = RoundedCornerShape(15.dp)
         ) {
@@ -309,18 +304,41 @@ fun CustomViewPager() {
                 modifier = Modifier
                     .fillMaxSize()
                     .align(Alignment.Center)
-            ){
-                Image(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    contentScale = ContentScale.Crop,
-                    painter = painterResource(id = item),
-                    contentDescription = "Instructor"
-                )
+                    .background(color = PurpleExtraDark)
+            ) {
+                Column(
+                    modifier = Modifier,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(230.dp),
+                        contentScale = ContentScale.Crop,
+                        painter = painterResource(id = item.image),
+                        contentDescription = "Instructor",
+                    )
+
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(
+                        text = item.name,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
+                    )
+
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(
+                        text = item.field,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
+                    )
+                }
             }
-
         }
-
     }
-
 }
